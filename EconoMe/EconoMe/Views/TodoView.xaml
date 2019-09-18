@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EconoMe.Views.TodoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModelBase="clr-namespace:EconoMe.ViewModels.Base;"
+    xmlns:i18n="clr-namespace:EconoMe.MarkupExtensions"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+
+    <StackLayout VerticalOptions="Center" 
+                 Padding="16">
+        <Label HorizontalOptions="Center"
+               Text="{Binding HelloWorld}"
+               Style="{StaticResource MediumBlueLabelStyle}"/>
+
+        <Button Command="{Binding TodoCommand}" 
+                Text="{i18n:TranslateExtension Text=TodoView_TodoCommandLabel}" />
+    </StackLayout>
+</ContentPage>

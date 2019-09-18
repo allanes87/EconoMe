@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs/EconoMe/v15/Server/sqlite3
+/.vs/EconoMe/v15/.suo
+/.vs
+/EconoMe/EconoMe/obj
+/EconoMe/EconoMe.Android/obj
+/EconoMe/EconoMe.IOS/obj
