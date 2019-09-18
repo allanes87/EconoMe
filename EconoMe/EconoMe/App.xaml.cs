@@ -19,8 +19,7 @@ namespace EconoMe
 
         private void InitApp()
         {
-            var useMock = Settings.UseMocks;
-            ViewModelLocator.RegisterDependencies(useMock);
+            Locator.Instance.RegisterDependencies();
         }
 
         protected override async void OnStart()
@@ -31,7 +30,7 @@ namespace EconoMe
 
         private Task InitNavigation()
         {
-            var navigationService = ViewModelLocator.Resolve<INavigationService>();
+            var navigationService = Locator.Instance.Resolve<INavigationService>();
             return navigationService.InitializeAsync();
         }
 

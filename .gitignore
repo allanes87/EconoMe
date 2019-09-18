@@ -9,3 +9,5 @@
 /EconoMe/EconoMe.Android/obj
 /EconoMe/EconoMe.IOS/obj
 *.user
+/EconoMe/EconoMe/bin/Debug/netstandard2.0
+/EconoMe/EconoMe.Android/bin/Debug

@@ -8,8 +8,6 @@ namespace EconoMe.Services.Navigation
     {
         #region Basic
 
-        ViewModelBase PreviousPageViewModel { get; }
-
         Task InitializeAsync();
 
         Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase;

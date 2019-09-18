@@ -4,8 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModelBase="clr-namespace:EconoMe.ViewModels.Base;"
-    xmlns:i18n="clr-namespace:EconoMe.MarkupExtensions"
-    viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    xmlns:i18n="clr-namespace:EconoMe.MarkupExtensions">
 
     <StackLayout VerticalOptions="Center" 
                  Padding="16">

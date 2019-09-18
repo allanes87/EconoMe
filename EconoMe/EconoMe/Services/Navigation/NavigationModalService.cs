@@ -30,7 +30,7 @@ namespace EconoMe.Services.Navigation
         {
             _loggerService.RegisterNavigationEvent(viewModelType, parameter);
 
-            Page page = CreatePage(viewModelType, parameter);
+            Page page = CreateAndBindPage(viewModelType);
 
             var navigationPage = Application.Current.MainPage as CustomNavigationView;
 

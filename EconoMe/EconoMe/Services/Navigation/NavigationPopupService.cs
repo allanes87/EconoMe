@@ -16,7 +16,7 @@ namespace EconoMe.Services.Navigation
 
         public async Task NavigateToPopupAsync<TViewModel>(object parameter, bool animate) where TViewModel : ViewModelBase
         {
-            var page = CreatePage(typeof(TViewModel), parameter);
+            var page = CreateAndBindPage(typeof(TViewModel));
             await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
 
             if (page is PopupPage)
@@ -31,7 +31,7 @@ namespace EconoMe.Services.Navigation
 
         public async Task NavigateToPopupWithResultAsync<TViewModel, T>(Action<T> OnResultAction) where TViewModel : ViewModelWithResult<T>
         {
-            var page = CreatePage(typeof(TViewModel), null);
+            var page = CreateAndBindPage(typeof(TViewModel));
             await (page.BindingContext as ViewModelBase).InitializeAsync(null);
 
             if (page is PopupPage)

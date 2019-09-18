@@ -3,6 +3,7 @@ using EconoMe.ViewModels;
 using EconoMe.ViewModels.Base;
 using EconoMe.Views;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -13,20 +14,24 @@ namespace EconoMe.Services.Navigation
     public partial class NavigationService : INavigationService
     {
         private readonly ILoggerService _loggerService;
+        protected readonly Dictionary<Type, Type> _mappings;
 
         public NavigationService(ILoggerService loggerService)
         {
             _loggerService = loggerService;
+
+            _mappings = new Dictionary<Type, Type>();
+            CreatePageViewModelMappings();
         }
 
-        public ViewModelBase PreviousPageViewModel
+        protected Application CurrentApplication
         {
-            get
-            {
-                var mainPage = Application.Current.MainPage as CustomNavigationView;
-                var viewModel = mainPage.Navigation.NavigationStack[mainPage.Navigation.NavigationStack.Count - 2].BindingContext;
-                return viewModel as ViewModelBase;
-            }
+            get { return Application.Current; }
+        }
+
+        private void CreatePageViewModelMappings()
+        {
+            _mappings.Add(typeof(TodoViewModel), typeof(TodoView));
         }
 
         public Task InitializeAsync()
@@ -38,7 +43,7 @@ namespace EconoMe.Services.Navigation
         {
             if (Application.Current.MainPage is MasterDetailPage)
             {
-                Page page = CreatePage(typeof(TViewModel), null);
+                Page page = CreateAndBindPage(typeof(TViewModel));
 
                 (Application.Current.MainPage as MasterDetailPage).Detail = new CustomNavigationView(page);
 
@@ -97,7 +102,7 @@ namespace EconoMe.Services.Navigation
         {
             _loggerService.RegisterNavigationEvent(viewModelType, parameter);
 
-            Page page = CreatePage(viewModelType, parameter);
+            Page page = CreateAndBindPage(viewModelType);
 
             // if (page is LoginView)
             // {
@@ -119,25 +124,37 @@ namespace EconoMe.Services.Navigation
             await InitializePage(page, parameter);
         }
 
-        private Type GetPageTypeForViewModel(Type viewModelType)
-        {
-            var viewName = viewModelType.FullName.Replace("Model", string.Empty);
-            var viewModelAssemblyName = viewModelType.GetTypeInfo().Assembly.FullName;
-            var viewAssemblyName = string.Format(CultureInfo.InvariantCulture, "{0}, {1}", viewName, viewModelAssemblyName);
-            var viewType = Type.GetType(viewAssemblyName);
-            return viewType;
-        }
-
-        private Page CreatePage(Type viewModelType, object parameter)
+        protected Page CreateAndBindPage(Type viewModelType)
         {
             Type pageType = GetPageTypeForViewModel(viewModelType);
+
             if (pageType == null)
             {
-                throw new Exception($"Cannot locate page type for {viewModelType}");
+                throw new Exception($"Mapping type for {viewModelType} is not a page");
             }
 
-            Page page = Activator.CreateInstance(pageType) as Page;
-            return page;
+            try
+            {
+                Page page = Activator.CreateInstance(pageType) as Page;
+                ViewModelBase viewModel = Locator.Instance.Resolve(viewModelType) as ViewModelBase;
+                page.BindingContext = viewModel;
+
+                return page;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in {viewModelType}, {ex.InnerException.Message}");
+            }
+        }
+
+        protected Type GetPageTypeForViewModel(Type viewModelType)
+        {
+            if (!_mappings.ContainsKey(viewModelType))
+            {
+                throw new KeyNotFoundException($"No map for ${viewModelType} was found on navigation mappings");
+            }
+
+            return _mappings[viewModelType];
         }
 
         private async Task InitializePage(Page page, object parameter = null)
