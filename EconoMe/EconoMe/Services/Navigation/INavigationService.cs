@@ -14,8 +14,6 @@ namespace EconoMe.Services.Navigation
 
         Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase;
 
-        Task RemoveLastFromBackStackAsync();
-
         Task RemoveBackStackAsync();
 
         #endregion

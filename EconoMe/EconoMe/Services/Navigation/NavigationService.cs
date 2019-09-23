@@ -4,8 +4,6 @@ using EconoMe.ViewModels.Base;
 using EconoMe.Views;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -32,11 +30,13 @@ namespace EconoMe.Services.Navigation
         private void CreatePageViewModelMappings()
         {
             _mappings.Add(typeof(TodoViewModel), typeof(TodoView));
+            _mappings.Add(typeof(MainViewModel), typeof(MainPage));
+            _mappings.Add(typeof(MySummaryExpensesViewModel), typeof(MySummaryExpensesPage));
         }
 
         public Task InitializeAsync()
         {
-            return NavigateToAsync<TodoViewModel>();
+            return NavigateToAsync<MainViewModel>();
         }
 
         public async Task ShowInDetailAsync<TViewModel>(object parameter = null) where TViewModel : ViewModelBase
@@ -61,19 +61,6 @@ namespace EconoMe.Services.Navigation
         public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
         {
             return InternalNavigateToAsync(typeof(TViewModel), parameter);
-        }
-
-        public Task RemoveLastFromBackStackAsync()
-        {
-            var mainPage = Application.Current.MainPage as CustomNavigationView;
-
-            if (mainPage != null)
-            {
-                mainPage.Navigation.RemovePage(
-                    mainPage.Navigation.NavigationStack[mainPage.Navigation.NavigationStack.Count - 1]);
-            }
-
-            return Task.FromResult(true);
         }
 
         public Task RemoveBackStackAsync()

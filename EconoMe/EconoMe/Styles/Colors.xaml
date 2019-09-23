@@ -5,4 +5,5 @@
 
     <Color x:Key="Gray">#828282</Color>
     <Color x:Key="Blue">#195ABD</Color>
+    <Color x:Key="White">#FFFFFF</Color>
 </ResourceDictionary>

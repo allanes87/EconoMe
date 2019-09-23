@@ -1,4 +1,5 @@
-﻿using EconoMe.Helpers;
+﻿using Autofac;
+using EconoMe.Helpers;
 using EconoMe.Services.Navigation;
 using EconoMe.ViewModels.Base;
 using System;
@@ -11,15 +12,15 @@ namespace EconoMe
 {
     public partial class App : Application
     {
-        public App()
+        public App(Action<ContainerBuilder> registerPlatformDependenciesAction)
         {
             InitializeComponent();
-            InitApp();
+            InitApp(registerPlatformDependenciesAction);
         }
 
-        private void InitApp()
+        private void InitApp(Action<ContainerBuilder> registerPlatformDependenciesAction)
         {
-            Locator.Instance.RegisterDependencies();
+            Locator.Instance.RegisterDependencies(registerPlatformDependenciesAction);
         }
 
         protected override async void OnStart()

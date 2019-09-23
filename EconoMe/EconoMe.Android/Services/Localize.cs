@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using EconoMe.Android.Services;
+﻿using EconoMe.Android.Services;
 using EconoMe.Interfaces;
+using System;
+using System.Globalization;
+using System.Threading;
 
 [assembly: Xamarin.Forms.Dependency(typeof(Localize))]
 namespace EconoMe.Android.Services

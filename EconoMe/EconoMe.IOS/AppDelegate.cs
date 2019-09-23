@@ -1,4 +1,7 @@
 ﻿
+using Autofac;
+using EconoMe.DataAccess;
+using EconoMe.IOS.Services;
 using Foundation;
 using UIKit;
 
@@ -23,7 +26,10 @@ namespace EconoMe.IOS
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            LoadApplication(new App((builder) =>
+            {
+                builder.RegisterType<FileHelper>().As<IFileHelper>().SingleInstance();
+            }));
 
             return base.FinishedLaunching(app, options);
         }

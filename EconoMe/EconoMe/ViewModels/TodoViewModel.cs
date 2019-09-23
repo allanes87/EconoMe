@@ -1,9 +1,7 @@
-﻿using EconoMe.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using EconoMe.Services.Dialog;
+using EconoMe.Services.LogService;
+using EconoMe.Services.Navigation;
+using EconoMe.ViewModels.Base;
 using Xamarin.Forms;
 
 namespace EconoMe.ViewModels
@@ -19,9 +17,11 @@ namespace EconoMe.ViewModels
             }
         }
 
-        public TodoViewModel()
+        public TodoViewModel(IDialogService dialogService,
+            INavigationService navigationService,
+            ILoggerService loggerService) : base(dialogService, navigationService, loggerService)
         {
-            HelloWorld = "Welcome to Nareia's Xamarin.Forms base project";
+            HelloWorld = "Welcome";
         }
     }
 }
