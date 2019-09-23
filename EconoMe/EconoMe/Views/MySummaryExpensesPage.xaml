@@ -12,10 +12,10 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding MyExpenses}">
+            <ListView ItemsSource="{Binding MyEntries}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Brand}" Detail="{Binding CarLicensePlate}"/>
+                        <TextCell Text="{Binding Description}" Detail="{Binding Amount}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

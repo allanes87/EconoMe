@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EconoMe.DataAccess
+namespace EconoMe.Service.DataAccess
 {
     public interface IFileHelper
     {

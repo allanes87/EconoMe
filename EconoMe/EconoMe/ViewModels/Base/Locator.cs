@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using EconoMe.Services.DataAccess;
 using EconoMe.Services.Dialog;
 using EconoMe.Services.HttpClient;
 using EconoMe.Services.LogService;
@@ -38,6 +39,7 @@ namespace EconoMe.ViewModels.Base
 
             // Register Services. For singleton pattern use .SingleInstance();
             _containerBuilder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
+            _containerBuilder.RegisterType<DataBaseService>().As<IDataBaseService>().SingleInstance();
             _containerBuilder.RegisterType<DialogService>().As<IDialogService>();
             _containerBuilder.RegisterType<RequestProvider>().As<IRequestProvider>();
             _containerBuilder.RegisterType<LoggerService>().As<ILoggerService>();

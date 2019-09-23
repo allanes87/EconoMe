@@ -5,7 +5,7 @@ using Android.Content.PM;
 using Android.OS;
 using Autofac;
 using EconoMe.Android.Services;
-using EconoMe.DataAccess;
+using EconoMe.Service.DataAccess;
 
 namespace EconoMe.Android
 {
