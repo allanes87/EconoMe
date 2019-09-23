@@ -36,6 +36,7 @@ namespace EconoMe.ViewModels.Base
             _containerBuilder.RegisterType<MainViewModel>();
             _containerBuilder.RegisterType<MySummaryExpensesViewModel>();
             _containerBuilder.RegisterType<NewEntryViewModel>();
+            _containerBuilder.RegisterType<LoginViewModel>();
 
             // Register Services. For singleton pattern use .SingleInstance();
             _containerBuilder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
