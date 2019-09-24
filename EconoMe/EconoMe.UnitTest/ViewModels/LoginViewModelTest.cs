@@ -89,13 +89,6 @@ namespace EconoMe.UnitTest.ViewModels
 
             //Assert
             _navigationService.Verify(x => x.NavigateToAsync<MainViewModel>());
-
-            _navigationService.Verify(n => n.RemoveBackStackAsync(), Times.Exactly(2));
-
-            _dialogService.Verify(n => n.ShowAlertAsync(It.IsAny<string>(), It.IsAny<string>(), 
-                It.IsAny<string>()), Times.Once);
-
-            _navigationService.Verify(n => n.RemoveBackStackAsync(), Times.Never);
         }
     }
 }
