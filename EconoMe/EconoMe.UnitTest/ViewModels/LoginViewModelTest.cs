@@ -6,6 +6,7 @@ using EconoMe.ViewModels;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace EconoMe.UnitTest.ViewModels
 {
@@ -16,12 +17,6 @@ namespace EconoMe.UnitTest.ViewModels
         private readonly Mock<IDialogService> _dialogService = new Mock<IDialogService>();
         private readonly Mock<ILoggerService> _loggerService = new Mock<ILoggerService>();
         private readonly Mock<IAuthenticationService> _AuthenticationService = new Mock<IAuthenticationService>();
-
-        [SetUp]
-        public void Init()
-        {
-            Xamarin.Forms.Mocks.MockForms.Init();
-        }
 
         [Test]
         public void DoLoginEmailEmpty_ShouldBeInvalid()
@@ -69,7 +64,6 @@ namespace EconoMe.UnitTest.ViewModels
             _navigationService.VerifyNoOtherCalls();
         }
 
-
         [Test]
         public void DoLogin_ShouldBeNavigate()
         {
@@ -80,7 +74,7 @@ namespace EconoMe.UnitTest.ViewModels
 
             _navigationService
                 .Setup(x => x.NavigateToAsync<MainViewModel>())
-                .Verifiable();
+                .Returns(Task.CompletedTask);
 
             var loginViewModel = new LoginViewModel(_dialogService.Object,
                 _navigationService.Object,
@@ -95,29 +89,13 @@ namespace EconoMe.UnitTest.ViewModels
 
             //Assert
             _navigationService.Verify(x => x.NavigateToAsync<MainViewModel>());
+
+            _navigationService.Verify(n => n.RemoveBackStackAsync(), Times.Exactly(2));
+
+            _dialogService.Verify(n => n.ShowAlertAsync(It.IsAny<string>(), It.IsAny<string>(), 
+                It.IsAny<string>()), Times.Once);
+
+            _navigationService.Verify(n => n.RemoveBackStackAsync(), Times.Never);
         }
-
-        [Test]
-        public void DoLoginEmailFinalWhiteSpace_ShouldBeValid()
-        {
-            //Arrange
-            _AuthenticationService
-                .Setup(x => x.DoLogin(It.IsAny<string>(), It.IsAny<string>()))
-                .ReturnsAsync(true);
-
-            var loginViewModel = new LoginViewModel(_dialogService.Object,
-                _navigationService.Object,
-                _loggerService.Object,
-                _AuthenticationService.Object);
-
-            loginViewModel.Email.Value = "alex.llanes@gmail.com ";
-            loginViewModel.Password.Value = "Passw0rd";
-
-            //Act
-            loginViewModel.DoLoginCommand.Execute(null);
-
-            //Assert
-            loginViewModel.Email.IsValid.Should().BeFalse();
-        }   
     }
 }
