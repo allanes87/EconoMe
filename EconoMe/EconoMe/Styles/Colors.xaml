@@ -3,8 +3,12 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Gray">#828282</Color>
-    <Color x:Key="Blue">#195ABD</Color>
+    <Color x:Key="LightGray">#BDBDBD</Color>
+    <Color x:Key="Gray">#757575</Color>
+    <Color x:Key="LightPrimary">#BBDEFB</Color>
+    <Color x:Key="Blue">#2196F3</Color>
+    <Color x:Key="DarkPrimary">#1976D2</Color>
+    <Color x:Key="Accent">#FF9800</Color>
     <Color x:Key="White">#FFFFFF</Color>
-    <Color x:Key="Black">#000000</Color>
+    <Color x:Key="Black">#212121</Color>
 </ResourceDictionary>

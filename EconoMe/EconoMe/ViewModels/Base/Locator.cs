@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using EconoMe.Services.Authentication;
 using EconoMe.Services.DataAccess;
 using EconoMe.Services.Dialog;
 using EconoMe.Services.HttpClient;
@@ -44,6 +45,7 @@ namespace EconoMe.ViewModels.Base
             _containerBuilder.RegisterType<DialogService>().As<IDialogService>();
             _containerBuilder.RegisterType<RequestProvider>().As<IRequestProvider>();
             _containerBuilder.RegisterType<LoggerService>().As<ILoggerService>();
+            _containerBuilder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
 
             if (registerPlatformDepedencies != null)
                 registerPlatformDepedencies.Invoke(_containerBuilder);

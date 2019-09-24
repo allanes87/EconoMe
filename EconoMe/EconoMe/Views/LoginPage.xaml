@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <Grid VerticalOptions="FillAndExpand"
               BackgroundColor="{StaticResource White}">
-
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
@@ -17,14 +17,17 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
+                <Label Grid.Row="0" Text="Welcome to EconoMe" TextColor="Black"
+                       FontSize="Title"/>
+                
                 <StackLayout Grid.Row="1" Padding="55,0"
                              VerticalOptions="Center">
                     <components:BorderlessEntry Placeholder="Email"
-                           Text="{Binding Email}"
+                           Text="{Binding Email.Value}"
                            TextColor="{StaticResource Black}"
                            PlaceholderColor="{StaticResource Black}"/>
                     <components:BorderlessEntry Placeholder="Password" 
-                           Text="{Binding Password}"
+                           Text="{Binding Password.Value}"
                            TextColor="{StaticResource Black}"
                            PlaceholderColor="{StaticResource Black}"
                            IsPassword="True"/>

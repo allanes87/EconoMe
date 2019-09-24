@@ -10,10 +10,9 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
             android:TabbedPage.IsSwipePagingEnabled="true"
-            android:TabbedPage.BarItemColor="#66FFFFFF"
+            android:TabbedPage.BarItemColor="{StaticResource LightGray}"
             android:TabbedPage.BarSelectedItemColor="{StaticResource Blue}"
-            BarBackgroundColor="{StaticResource White}"
-            BarTextColor="{StaticResource Blue}">
+            BarTextColor="{StaticResource White}">
 
     <TabbedPage.Effects>
         <effects:NoShiftEffect/>

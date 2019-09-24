@@ -92,9 +92,26 @@ namespace EconoMe.UnitTest.ViewModels
         }
 
         [Test]
-        public void EmailWithFinalWhiteSpaceShouldBeValid()
+        public void DoLoginEmailFinalWhiteSpace_ShouldBeValid()
         {
-            
+            //Arrange
+            _AuthenticationService
+                .Setup(x => x.DoLogin(It.IsAny<string>(), It.IsAny<string>()))
+                .ReturnsAsync(true);
+
+            var loginViewModel = new LoginViewModel(_dialogService.Object,
+                _navigationService.Object,
+                _loggerService.Object,
+                _AuthenticationService.Object);
+
+            loginViewModel.Email.Value = "alex.llanes@gmail.com ";
+            loginViewModel.Password.Value = "Passw0rd";
+
+            //Act
+            loginViewModel.DoLoginCommand.Execute(null);
+
+            //Assert
+            loginViewModel.Email.IsValid.Should().BeFalse();
         }   
     }
 }

@@ -44,7 +44,7 @@ namespace EconoMe.ViewModels
 
             try
             {
-                CleanWithSpacesOnEmail();
+                //CleanWithSpacesOnEmail();
 
                 bool isValid = Validate();
 
@@ -85,13 +85,15 @@ namespace EconoMe.ViewModels
         {
             Email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Email should not be empty" });
             Email.Validations.Add(new EmailRule());
+            Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password should not be empty" });
         }
 
         private bool Validate()
         {
             bool isValidEmail = Email.Validate();
+            bool isValidPassword = Password.Validate();
 
-            return isValidEmail;
+            return isValidPassword && isValidEmail;
         }
 
         #endregion
