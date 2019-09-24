@@ -6,7 +6,7 @@ namespace EconoMe.Validations
     {
         public IsNotNullOrEmptyRule()
         {
-            ValidationMessage = AppResource.Validations_IsNotNullOrEmptyRuleMessage;
+            ValidationMessage = $"The field {nameof(T)} cannot be empty";
         }
 
         public string ValidationMessage { get; set; }

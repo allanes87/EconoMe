@@ -4,12 +4,38 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="EconoMe.Views.LoginPage">
+             x:Class="EconoMe.Views.LoginPage"
+             xmlns:components="clr-namespace:EconoMe.Views.Components">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid VerticalOptions="FillAndExpand"
+              BackgroundColor="{StaticResource White}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="1" Padding="55,0"
+                             VerticalOptions="Center">
+                    <components:BorderlessEntry Placeholder="Email"
+                           Text="{Binding Email}"
+                           TextColor="{StaticResource Black}"
+                           PlaceholderColor="{StaticResource Black}"/>
+                    <components:BorderlessEntry Placeholder="Password" 
+                           Text="{Binding Password}"
+                           TextColor="{StaticResource Black}"
+                           PlaceholderColor="{StaticResource Black}"
+                           IsPassword="True"/>
+                    
+                    <Button Text="Login" 
+                            VerticalOptions="End"
+                            Margin="0,10,0,0"
+                            Command="{Binding DoLoginCommand}"
+                            Style="{StaticResource BaseButtonStyle}"/>
+                </StackLayout>
+            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -37,7 +37,7 @@ namespace EconoMe.Services.Navigation
 
         public Task InitializeAsync()
         {
-            return NavigateToAsync<MainViewModel>();
+            return NavigateToAsync<LoginViewModel>();
         }
 
         public async Task ShowInDetailAsync<TViewModel>(object parameter = null) where TViewModel : ViewModelBase
@@ -92,22 +92,22 @@ namespace EconoMe.Services.Navigation
 
             Page page = CreateAndBindPage(viewModelType);
 
-            // if (page is LoginView)
-            // {
-            //     Application.Current.MainPage = new CustomNavigationView(page);
-            // }
-            // else
-            // {
-            var navigationPage = Application.Current.MainPage as CustomNavigationView;
-            if (navigationPage != null)
+            if (page is LoginPage)
             {
-                await navigationPage.PushAsync(page);
+                Application.Current.MainPage = page;
             }
             else
             {
-                Application.Current.MainPage = new CustomNavigationView(page);
+                var navigationPage = Application.Current.MainPage as CustomNavigationView;
+                if (navigationPage != null)
+                {
+                    await navigationPage.PushAsync(page);
+                }
+                else
+                {
+                    Application.Current.MainPage = new CustomNavigationView(page);
+                }
             }
-            // }
 
             await InitializePage(page, parameter);
         }
