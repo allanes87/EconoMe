@@ -17,6 +17,12 @@ namespace EconoMe.UnitTest.ViewModels
         private readonly Mock<ILoggerService> _loggerService = new Mock<ILoggerService>();
         private readonly Mock<IAuthenticationService> _AuthenticationService = new Mock<IAuthenticationService>();
 
+        [SetUp]
+        public void Init()
+        {
+            Xamarin.Forms.Mocks.MockForms.Init();
+        }
+
         [Test]
         public void DoLoginEmailEmpty_ShouldBeInvalid()
         {
