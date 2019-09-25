@@ -88,8 +88,8 @@ namespace EconoMe.ViewModels
             {
                 await CreateEntry();
 
-                await NavigationService.RemoveBackStackAsync();
                 await DialogService.ShowAlertAsync("Your entry was created", "Well done!", "Ok");
+                await NavigationService.PopAsync();
             }
             catch (Exception ex)
             {

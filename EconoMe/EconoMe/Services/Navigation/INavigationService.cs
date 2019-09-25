@@ -16,6 +16,8 @@ namespace EconoMe.Services.Navigation
 
         Task RemoveBackStackAsync();
 
+        Task PopAsync();
+
         #endregion
 
         #region Popups
