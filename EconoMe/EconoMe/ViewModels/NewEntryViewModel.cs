@@ -31,7 +31,8 @@ namespace EconoMe.ViewModels
                 Models.Enums.EntryType.Outcome.ToString()
             };
         }
-        public ObservableCollection<Category> Categories { get; set; } = new ObservableCollection<Category>();
+        public ObservableCollection<string> Categories { get; set; } = new ObservableCollection<string>();
+        public string SelectedCategory { get; set; }
 
         #endregion
 
@@ -62,8 +63,8 @@ namespace EconoMe.ViewModels
 
             try
             {
-                var categories = await _entryService.GetCategories();
-                Categories = new ObservableCollection<Category>(categories);
+                var categorieNames = await _entryService.GetCategories();
+                Categories = new ObservableCollection<string>(categorieNames);
             }
             catch (Exception ex)
             {
@@ -85,10 +86,12 @@ namespace EconoMe.ViewModels
 
             try
             {
+                var selectedCategory = await _entryService.GetCategoryByName(SelectedCategory);
+
                 var entryToSave = new Models.Entry()
                 {
                     Amount = Amount.Value,
-                    Category = Categories.FirstOrDefault(),
+                    Category = selectedCategory,
                     Description = Description.Value,
                     EntryType = Models.Enums.EntryType.Income,
                     Date = DateTime.Now

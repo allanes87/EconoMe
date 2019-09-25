@@ -32,6 +32,7 @@ namespace EconoMe.Services.Navigation
             _mappings.Add(typeof(MainViewModel), typeof(MainPage));
             _mappings.Add(typeof(MySummaryExpensesViewModel), typeof(MySummaryExpensesPage));
             _mappings.Add(typeof(LoginViewModel), typeof(LoginPage));
+            _mappings.Add(typeof(NewEntryViewModel), typeof(NewEntryPage));
         }
 
         public Task InitializeAsync()

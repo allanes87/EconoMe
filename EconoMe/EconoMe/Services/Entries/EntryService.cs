@@ -1,14 +1,26 @@
-﻿using System;
+﻿using EconoMe.Models;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
-using EconoMe.Models;
 
 namespace EconoMe.Services.Entries
 {
     public class EntryService : IEntryService
     {
-        public async Task<List<Category>> GetCategories()
+        public async Task<Category> GetCategoryByName(string name)
+        {
+            var result = new Category();
+
+            await Task.Run(() => 
+            {
+                result = new Category() { Id = 1, ImageSource = "", Name = "Car" };
+            });
+
+            return result;
+        }
+
+        public async Task<List<string>> GetCategories()
         {
             var categories = new List<Category>();
             await Task.Run(() =>
@@ -21,7 +33,7 @@ namespace EconoMe.Services.Entries
                 };
             });
 
-            return categories;
+            return categories.Select(x => x.Name).ToList();
         }
 
         public async Task<List<Entry>> GetMyEntries()
@@ -58,6 +70,22 @@ namespace EconoMe.Services.Entries
                         EntryType = Models.Enums.EntryType.Income,
                         Amount = 1000
                     },
+                };
+            });
+
+            return result;
+        }
+
+        public async Task<Totals> GetTotals()
+        {
+            var result = new Totals();
+
+            await Task.Run(() => 
+            {
+                result = new Totals()
+                {
+                    Income = 1000,
+                    Expense = 500
                 };
             });
 

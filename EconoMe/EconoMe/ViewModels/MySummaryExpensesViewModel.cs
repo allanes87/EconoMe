@@ -1,4 +1,5 @@
-﻿using EconoMe.Services.Dialog;
+﻿using EconoMe.Models;
+using EconoMe.Services.Dialog;
 using EconoMe.Services.Entries;
 using EconoMe.Services.LogService;
 using EconoMe.Services.Navigation;
@@ -15,7 +16,12 @@ namespace EconoMe.ViewModels
     {
         private readonly IEntryService _entryService;
 
-        public ObservableCollection<Models.Entry> MyEntries { get; set; }
+        #region Properties
+
+        public ObservableCollection<Models.Entry> MyEntries { get; set; } = new ObservableCollection<Models.Entry>();
+        public Totals Totals { get; set; }
+
+        #endregion
 
         #region Commands
 
@@ -47,6 +53,8 @@ namespace EconoMe.ViewModels
             {
                 var entries = await _entryService.GetMyEntries();
                 MyEntries = new ObservableCollection<Models.Entry>(entries);
+
+                Totals = await _entryService.GetTotals();
             }
             catch (Exception ex)
             {

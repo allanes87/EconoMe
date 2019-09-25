@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 
 namespace EconoMe.Services.Authentication
@@ -10,7 +7,7 @@ namespace EconoMe.Services.Authentication
     {
         public async Task<bool> DoLogin(string email, string password)
         {
-            await Task.Run(() => Thread.Sleep(2000));
+            await Task.Run(() => Thread.Sleep(500));
             return true;
         }
     }

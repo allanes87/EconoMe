@@ -11,7 +11,7 @@
         <StackLayout Orientation="Vertical" Padding="0,0,0,5">
             <!--Description-->
             <StackLayout Padding="15">
-                <Label Text="Description" Style="{StaticResource LargeLabelStyle}"/>
+                <Label Text="Description"/>
 
                 <components:BorderlessEntry Placeholder="Description"
                                             Text="{Binding Description.Value}">
@@ -20,7 +20,7 @@
 
             <!--Description-->
             <StackLayout Padding="15">
-                <Label Text="Amount" Style="{StaticResource LargeLabelStyle}"/>
+                <Label Text="Amount"/>
 
                 <components:BorderlessEntry Placeholder="Description"
                                             Text="{Binding Amount.Value}"
@@ -30,10 +30,11 @@
 
             <!--Category-->
             <StackLayout Padding="15">
-                <Label Text="Category" Style="{StaticResource LargeLabelStyle}"/>
+                <Label Text="Category"/>
 
                 <Picker Title="Choose category"
-                        ItemsSource="{Binding Categories}"/>
+                        ItemsSource="{Binding Categories}"
+                        SelectedItem="{Binding SelectedCategory}"/>
             </StackLayout>
 
             <Button Style="{StaticResource BaseButtonStyle}"

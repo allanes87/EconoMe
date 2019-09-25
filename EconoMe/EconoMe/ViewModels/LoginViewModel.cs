@@ -49,7 +49,7 @@ namespace EconoMe.ViewModels
                 if (isValid)
                 {
                     await DoLogin();
-                    await NavigationService.NavigateToAsync<MainViewModel>();
+                    await NavigationService.NavigateToAsync<MySummaryExpensesViewModel>();
                 }
             }
             catch (Exception ex)

@@ -8,34 +8,35 @@
              Title="My Summary">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="ADD" Order="Primary" Priority="0" Command="{Binding AddNewEntry}"/>
+        <ToolbarItem Name="ADD" Order="Primary" Priority="0" Command="{Binding AddNewEntryCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Grid>
+            <Grid Padding="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackLayout>
+                <StackLayout Grid.Column="0" HorizontalOptions="CenterAndExpand">
                     <Label Text="Income"/>
-                    <Label Text="1234"/>
+                    <Label Text="{Binding Totals.Income}" FontAttributes="Bold"/>
                 </StackLayout>
-                <StackLayout>
+                <StackLayout Grid.Column="1" HorizontalOptions="CenterAndExpand">
                     <Label Text="Expense"/>
-                    <Label Text="1234"/>
+                    <Label Text="{Binding Totals.Expense}" FontAttributes="Bold"/>
                 </StackLayout>
-                <StackLayout>
-                    <Label Text="Balance"/>
-                    <Label Text="1234"/>
+                <StackLayout Grid.Column="2" HorizontalOptions="CenterAndExpand">
+                    <Label Text="Balance" />
+                    <Label Text="{Binding Totals.Balance}" FontAttributes="Bold"/>
                 </StackLayout>
             </Grid>
-            <ListView ItemsSource="{Binding MyEntries}">
+            <ListView ItemsSource="{Binding MyEntries}" Margin="10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Description}" Detail="{Binding Amount}"/>
+                        <TextCell Text="{Binding Description}" TextColor="{StaticResource Black}"
+                                  Detail="{Binding Amount}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
