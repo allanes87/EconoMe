@@ -2,6 +2,7 @@
 using EconoMe.Services.Authentication;
 using EconoMe.Services.DataAccess;
 using EconoMe.Services.Dialog;
+using EconoMe.Services.Entries;
 using EconoMe.Services.HttpClient;
 using EconoMe.Services.LogService;
 using EconoMe.Services.Navigation;
@@ -33,7 +34,6 @@ namespace EconoMe.ViewModels.Base
             _containerBuilder = new ContainerBuilder();
 
             // Register ViewModels
-            _containerBuilder.RegisterType<TodoViewModel>();
             _containerBuilder.RegisterType<MainViewModel>();
             _containerBuilder.RegisterType<MySummaryExpensesViewModel>();
             _containerBuilder.RegisterType<NewEntryViewModel>();
@@ -46,6 +46,7 @@ namespace EconoMe.ViewModels.Base
             _containerBuilder.RegisterType<RequestProvider>().As<IRequestProvider>();
             _containerBuilder.RegisterType<LoggerService>().As<ILoggerService>();
             _containerBuilder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
+            _containerBuilder.RegisterType<EntryService>().As<IEntryService>();
 
             if (registerPlatformDepedencies != null)
                 registerPlatformDepedencies.Invoke(_containerBuilder);

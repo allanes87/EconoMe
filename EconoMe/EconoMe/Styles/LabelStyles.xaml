@@ -3,15 +3,11 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <!--Gray-->
-    <Style x:Key="MediumGrayLabelStyle" TargetType="{x:Type Label}">
-        <Setter Property="TextColor" Value="{StaticResource Gray}"/>
-        <Setter Property="FontSize" Value="{StaticResource MediumSize}"/>
+    <Style x:Key="LargeLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="TextColor" Value="{StaticResource Black}"/>
+        <Setter Property="FontSize" Value="Large"/>
     </Style>
 
-    <Style x:Key="MediumBlueLabelStyle" TargetType="{x:Type Label}">
-        <Setter Property="TextColor" Value="{StaticResource Blue}"/>
-        <Setter Property="FontSize" Value="{StaticResource MediumSize}"/>
-    </Style>
+    
 
 </ResourceDictionary>

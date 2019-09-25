@@ -4,12 +4,44 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="EconoMe.Views.NewEntryPage">
+             x:Class="EconoMe.Views.NewEntryPage"
+             xmlns:components="clr-namespace:EconoMe.Views.Components"
+             Title="New Entry">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Orientation="Vertical" Padding="0,0,0,5">
+            <!--Description-->
+            <StackLayout Padding="15">
+                <Label Text="Description" Style="{StaticResource LargeLabelStyle}"/>
+
+                <components:BorderlessEntry Placeholder="Description"
+                                            Text="{Binding Description.Value}">
+                </components:BorderlessEntry>
+            </StackLayout>
+
+            <!--Description-->
+            <StackLayout Padding="15">
+                <Label Text="Amount" Style="{StaticResource LargeLabelStyle}"/>
+
+                <components:BorderlessEntry Placeholder="Description"
+                                            Text="{Binding Amount.Value}"
+                                            Keyboard="Numeric">
+                </components:BorderlessEntry>
+            </StackLayout>
+
+            <!--Category-->
+            <StackLayout Padding="15">
+                <Label Text="Category" Style="{StaticResource LargeLabelStyle}"/>
+
+                <Picker Title="Choose category"
+                        ItemsSource="{Binding Categories}"/>
+            </StackLayout>
+
+            <Button Style="{StaticResource BaseButtonStyle}"
+                    Command="{Binding SaveCommand}"
+                    Text="Save"
+                    Margin="15,5"
+                    VerticalOptions="EndAndExpand"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

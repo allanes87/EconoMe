@@ -8,10 +8,30 @@
              Title="My Summary">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="ADD" Order="Primary" Priority="0"/>
+        <ToolbarItem Name="ADD" Order="Primary" Priority="0" Command="{Binding AddNewEntry}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout>
+                    <Label Text="Income"/>
+                    <Label Text="1234"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Expense"/>
+                    <Label Text="1234"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Balance"/>
+                    <Label Text="1234"/>
+                </StackLayout>
+            </Grid>
             <ListView ItemsSource="{Binding MyEntries}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

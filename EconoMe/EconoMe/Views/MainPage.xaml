@@ -19,7 +19,6 @@
     </TabbedPage.Effects>
 
     <local:MySummaryExpensesPage Title="Resumen" />
-    <ContentPage Title="Transacciones" />
     <ContentPage Title="Categorías" />
     <ContentPage Title="Perfil" />
 

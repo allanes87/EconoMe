@@ -29,7 +29,6 @@ namespace EconoMe.Services.Navigation
 
         private void CreatePageViewModelMappings()
         {
-            _mappings.Add(typeof(TodoViewModel), typeof(TodoView));
             _mappings.Add(typeof(MainViewModel), typeof(MainPage));
             _mappings.Add(typeof(MySummaryExpensesViewModel), typeof(MySummaryExpensesPage));
             _mappings.Add(typeof(LoginViewModel), typeof(LoginPage));
