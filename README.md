@@ -1,7 +1,7 @@
 # EconoMe
 
 ## ServiceTest
-En LoginPage creamos el siguiente Trigger
+
 
 ``` csharp
     [TestFixture]
@@ -36,7 +36,7 @@ En LoginPage creamos el siguiente Trigger
 ```
 
 ## ValidationTest
-En LoginPage creamos el siguiente Trigger
+
 
 ``` csharp
     [TestFixture]
