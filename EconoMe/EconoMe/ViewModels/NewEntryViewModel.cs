@@ -86,18 +86,10 @@ namespace EconoMe.ViewModels
 
             try
             {
-                var selectedCategory = await _entryService.GetCategoryByName(SelectedCategory);
+                await CreateEntry();
 
-                var entryToSave = new Models.Entry()
-                {
-                    Amount = Amount.Value,
-                    Category = selectedCategory,
-                    Description = Description.Value,
-                    EntryType = Models.Enums.EntryType.Income,
-                    Date = DateTime.Now
-                };
-
-                await _entryService.SaveEntry(entryToSave);
+                await NavigationService.RemoveBackStackAsync();
+                await DialogService.ShowAlertAsync("Your entry was created", "Well done!", "Ok");
             }
             catch (Exception ex)
             {
@@ -111,6 +103,22 @@ namespace EconoMe.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        private async Task CreateEntry()
+        {
+            var selectedCategory = await _entryService.GetCategoryByName(SelectedCategory);
+
+            var entryToSave = new Models.Entry()
+            {
+                Amount = Amount.Value,
+                Category = selectedCategory,
+                Description = Description.Value,
+                EntryType = Models.Enums.EntryType.Income,
+                Date = DateTime.Now
+            };
+
+            await _entryService.SaveEntry(entryToSave);
         }
     }
 }

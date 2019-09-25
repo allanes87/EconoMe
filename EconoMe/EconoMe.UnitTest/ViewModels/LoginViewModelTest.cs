@@ -88,7 +88,7 @@ namespace EconoMe.UnitTest.ViewModels
             loginViewModel.DoLoginCommand.Execute(null);
 
             //Assert
-            _navigationService.Verify(x => x.NavigateToAsync<MainViewModel>());
+            _navigationService.Verify(x => x.NavigateToAsync<MySummaryExpensesViewModel>());
         }
     }
 }

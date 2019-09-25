@@ -51,6 +51,12 @@ namespace EconoMe.ViewModels
                     await DoLogin();
                     await NavigationService.NavigateToAsync<MySummaryExpensesViewModel>();
                 }
+                else
+                {
+                    await DialogService.ShowAlertAsync("Please fill all the fields", 
+                        "Missing data", 
+                        "OK");
+                }
             }
             catch (Exception ex)
             {

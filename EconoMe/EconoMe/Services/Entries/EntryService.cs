@@ -1,4 +1,5 @@
 ﻿using EconoMe.Models;
+using EconoMe.Services.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,13 @@ namespace EconoMe.Services.Entries
 {
     public class EntryService : IEntryService
     {
+        private readonly IDataBaseService _databaseService;
+
+        public EntryService(IDataBaseService databaseService)
+        {
+            _databaseService = databaseService;
+        }
+
         public async Task<Category> GetCategoryByName(string name)
         {
             var result = new Category();
@@ -38,56 +46,27 @@ namespace EconoMe.Services.Entries
 
         public async Task<List<Entry>> GetMyEntries()
         {
-            var result = new List<Entry>();
-            await Task.Run(() =>
-            {
-                result = new List<Entry>()
-                {
-                    new Entry()
-                    {
-                        Id = 1,
-                        Category = new Category() {Id = 1, Name = "Car" },
-                        Date = DateTime.Now,
-                        Description = "Parking",
-                        EntryType = Models.Enums.EntryType.Outcome,
-                        Amount = 200
-                    },
-                    new Entry()
-                    {
-                        Id = 2,
-                        Category = new Category() {Id = 2, Name = "Food" },
-                        Date = DateTime.Now,
-                        Description = "Supermarket",
-                        EntryType = Models.Enums.EntryType.Outcome,
-                        Amount = 300
-                    },
-                    new Entry()
-                    {
-                        Id = 3,
-                        Category = new Category() {Id = 3, Name = "Salary" },
-                        Date = DateTime.Now,
-                        Description = "Salary",
-                        EntryType = Models.Enums.EntryType.Income,
-                        Amount = 1000
-                    },
-                };
-            });
-
-            return result;
+            return await _databaseService.GetMyEntries();
         }
 
         public async Task<Totals> GetTotals()
         {
             var result = new Totals();
+            var myEntries = await GetMyEntries();
 
-            await Task.Run(() => 
+            var income = myEntries.
+                Where(x => x.EntryType == Models.Enums.EntryType.Income)
+                .Sum(e => e.Amount);
+
+            var expense = myEntries.
+                Where(x => x.EntryType == Models.Enums.EntryType.Outcome)
+                .Sum(e => e.Amount);
+
+            result = new Totals()
             {
-                result = new Totals()
-                {
-                    Income = 1000,
-                    Expense = 500
-                };
-            });
+                Income = income,
+                Expense = expense
+            };
 
             return result;
         }

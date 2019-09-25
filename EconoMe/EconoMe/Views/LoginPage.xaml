@@ -19,11 +19,12 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="1" Text="Welcome to EconoMe" TextColor="Black"
-                       FontSize="Title" Margin="10,0"/>
+                <Label Grid.Row="1" Text="Welcome to EconoMe" 
+                       TextColor="{StaticResource Black}"
+                       FontSize="Title" Margin="20,0"/>
                 
                 <StackLayout Grid.Row="2" Padding="55,0"
-                             VerticalOptions="Center">
+                             VerticalOptions="CenterAndExpand">
                     <components:BorderlessEntry Placeholder="Email"
                            Text="{Binding Email.Value}"
                            TextColor="{StaticResource Black}"
